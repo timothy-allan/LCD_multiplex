@@ -70,7 +70,7 @@ CONFIGURATIONS: 70
 NUM_LOOPS: 100 000
 CONFIGURATIONS: 70
 
-NUM_LOOPS: 1000000
+NUM_LOOPS: 1 000 000
 CONFIGURATIONS: 70
 
 So, we can make a pretty good guess that there are 70 possible configurations of 8 pixels TOTAL, 4 ON. We can then limit the number of configurations we generate. Rather than generate configurations infinitely, we can stop our program once LIST_OF_pixel_configurations contains 70 configurations.
