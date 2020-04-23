@@ -1,7 +1,3 @@
-please format code with </> button * homework policy * asking questions
-
-Hi,
-
 I’m having trouble getting some nested for loops to ‘animate’…
 
 My code draws an enlarged ‘pixel grid’ by iterating through a 3D array, which contains
