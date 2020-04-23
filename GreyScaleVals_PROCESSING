@@ -1,0 +1,82 @@
+//for arduino, LCD, multiplex
+
+import processing.serial.*;
+Serial port;
+
+
+int numFrames = 1;  // The number of frames in the animation
+int currentFrame = 0;
+PImage[] images = new PImage[numFrames];
+
+color pixelColor;
+int greyVal;
+int randNum;
+
+void setup() {
+
+  frameRate(24);
+  noStroke();                // Important if we want to display 1x1 pixel images!
+
+
+  // Serial business
+  println("Available serial ports:");
+  println(Serial.list());
+
+  port = new Serial(this, Serial.list()[5], 115200);
+
+
+  // LOAD SEQUENTIAL IMAGES
+  // If you don't want to load each image separately
+  // and you know how many frames you have, you
+  // can create the filenames as the program runs.
+  // The nf() command does number formatting, which will
+  // ensure that the number is (in this case) 5 digits.
+  for (int i = 0; i < numFrames; i++) {
+    String imageName = "random20x4_" + nf(i, 5) + ".png";
+    images[i] = loadImage(imageName);
+    //images[i].filter(GRAY);
+  }
+} 
+
+
+void draw() { 
+  
+  delay(3000);
+  
+  currentFrame = (currentFrame+1) % numFrames;  // Use % modulo to cycle through frames
+
+
+  for (int x = 0; x < 20; x++) {
+    for (int y = 0; y < 4; y++) {
+
+      pixelColor = int((images[(currentFrame)]).get(x, y));
+
+      // https://processing.org/discourse/beta/num_1159135995.html
+
+      int r = (pixelColor & 0x00FF0000) >> 16;     // red part
+      int g = (pixelColor & 0x0000FF00) >> 8;      // green part
+      int b = (pixelColor & 0x000000FF);           // blue part
+      int grey = (r + b + g) / 3;
+      int brightness = max(r, g, b);
+
+
+      // map values to a range: 0 - 8
+      int sendGreyVal = int(map(grey, 0, 255, 0, 8));
+      int sendbrightnessVal = int(map(brightness, 0, 255, 0, 8));
+
+      fill(grey);
+      rect(x, y, 1, 1);
+
+
+      print(sendbrightnessVal);
+      print("\t");
+
+
+      port.write(sendbrightnessVal);
+      delay(200);
+    }
+  }
+
+  print("End");
+  print("\n");
+}
