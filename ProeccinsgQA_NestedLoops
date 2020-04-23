@@ -4,7 +4,8 @@ Hi,
 
 I’m having trouble getting some nested for loops to ‘animate’…
 
-My code draws an enlarged ‘pixel grid’ by iterating through a 3D array, which contains a number of pixel ‘configurations’, each containing 3 ‘rows’ of four ‘columns’.
+My code draws an enlarged ‘pixel grid’ by iterating through a 3D array, which contains
+a number of pixel ‘configurations’, each containing 3 ‘rows’ of four ‘columns’.
 
 int[][][] pixelConfigs = {
 
@@ -14,7 +15,8 @@ int[][][] pixelConfigs = {
 };
 I want to display these ‘grids’ in sequence, looping through first to last.
 
-I’ve used three nested loops to run through the array - configuration, row, and column - and draw the pixel grid, with each ‘pixel’ being on or off depending on the value found in the pixelConfigs array.
+I’ve used three nested loops to run through the array - configuration, row, and column - and 
+draw the pixel grid, with each ‘pixel’ being on or off depending on the value found in the pixelConfigs array.
 
 When I run this code, It only displays the grid that represents the final ‘configuration’ in pixelConfigs,
 
@@ -56,7 +58,8 @@ void drawSingleCharacter() {
     }
   }
 }
-BUT when I remove the outermost for loop, and use a random number to decide which ‘configuration’ to display, it animates, but not as intended - i.e sequentially…
+BUT when I remove the outermost for loop, and use a random number to decide which ‘configuration’ to display, 
+it animates, but not as intended - i.e sequentially…
 
 void drawSingleCharacter() {
 
@@ -75,4 +78,7 @@ void drawSingleCharacter() {
     }
   }
 }
-I think I’m missing something basic and fundamental about the way the first bit of code with 3 loops is iterating through the array - any advice gratefully received!
+
+
+I think I’m missing something basic and fundamental about the way the first bit of code with 3 loops
+is iterating through the array - any advice gratefully received!
