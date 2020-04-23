@@ -94,9 +94,10 @@ NUM_LOOPS: 100 000
 CONFIGURATIONS: 70
 Time to complete: 0.7345280647277832
 
-NUM_LOOPS: 1 000 000
+NUM_LOOPS: 100 000 000
 CONFIGURATIONS: 70
-Time to complete: 7.315468072891235 
+Time to complete: 7.315468072891235
+
 
 If we limit the size of LIST_OF_pixel_configurations to 70, our best guess of the max number of configurations, it takes far less time - we are not wasting time generating configurations that have already been found and added:
 
@@ -133,12 +134,13 @@ NUM_LOOPS: 10 000 000
 CONFIGURATIONS: 8008
 Time to complete: 260.518
 
-
-
+NUM_LOOPS: 100 000 000 
+CONFIGURATIONS: 8008
+Time to complete: 2649.93 - around 45 minutes...
 
 
 Question ONE:
-Is there a way to calculate, in advance, the number of possible configurations of pixel grid of some (width * height) = length (l), with (n) pixels ON? This would allow us to end our program once it had found the total number of configurations before running the tests above.
+Is there a way to calculate, in advance, the number of possible configurations of pixel grid of some (width * height) = length (l), with (n) pixels ON? This would allow us to end our program once it had found the total number of configurations before running the exhaustive tests above.
 
 Question TWO:
 Is there a way to generate all possible configurations of such a  a pixel grid WITHOUT this brute force method? That is to say - without generating endless random configurations?
