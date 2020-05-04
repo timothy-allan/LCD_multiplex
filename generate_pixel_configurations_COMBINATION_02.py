@@ -36,40 +36,36 @@ def generate_random_configs(total_num_pixels, target_num_pixels_on):
     pixel_config = []                        # list to contain possible pixel configurations
     
     num_distinct_configs = combination(total_num_pixels, target_num_pixels_on)
-    print(num_distinct_configs)
+    print("number of distinct combinations:",num_distinct_configs)
     
     while len(pixel_config) < combination(total_num_pixels, target_num_pixels_on): 
         
         num_pixels_on = 0           
-
         random_configuration = []            # list contains a random confuration of pixels ON
-
+        
         
         for pixels in range (total_num_pixels):     
             
             randNum = random.randrange (0, 2)
             random_configuration.append (randNum)
-            
             num_pixels_on += randNum
             
         if num_pixels_on == target_num_pixels_on:               # have we found a configuration that equals target_num_pixels_on
             
             if random_configuration not in pixel_config:
-                
+            
                 pixel_config.append(random_configuration)       # Add to list of pixel configurations
    
-    print(pixel_config)
+    #print("combinations: ",pixel_config, end = "\n\n")
     return pixel_config
 
-
-    
 
 
 def split_configs(configs_to_split):
     
     # convert each configuration to *char_width* rows for Processing (eg - 4 rows, 3 columns)
     
-    num_of_rows = 4  
+    num_of_rows = 3  
     
     split_pixel_config = []
     for config in configs_to_split:
@@ -80,7 +76,6 @@ def split_configs(configs_to_split):
     return (split_pixel_config)
 
     
-
 
 def convert_list_to_ProcessingArray(configs_to_convert):
     
@@ -110,22 +105,18 @@ def write_to_file(processingArray):
     #print(f.read())
     
     
-    
-    
-
-
+ 
 total_num_pixels = 6
+step = int(total_num_pixels / 3)
 
 
 list_of_configs = []
 
-for num_pixels_ON in range (1, total_num_pixels):
+for num_pixels_ON in range (1, total_num_pixels, step):
     print("total num pixels =", total_num_pixels, "| pixels ON =", num_pixels_ON)
 
-    list_of_configs.append(len(generate_random_configs(total_num_pixels, num_pixels_ON)))
-    print(list_of_configs, end = "\n\n")
+    list_of_configs.append(generate_random_configs(total_num_pixels, num_pixels_ON))
+    print ("list of all possible combinations:")
 
+print(list_of_configs, end = "\n\n")
 
-
-
-  
