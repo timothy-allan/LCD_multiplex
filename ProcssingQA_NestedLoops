@@ -1,3 +1,6 @@
+https://discourse.processing.org/t/nested-for-loop-not-animating/20083
+
+
 I’m having trouble getting some nested for loops to ‘animate’…
 
 My code draws an enlarged ‘pixel grid’ by iterating through a 3D array, which contains
@@ -78,3 +81,75 @@ void drawSingleCharacter() {
 
 I think I’m missing something basic and fundamental about the way the first bit of code with 3 loops
 is iterating through the array - any advice gratefully received!
+
+ANSWERED +++++++++++++++++++++
+
+
+Chrisir
+2 
+9d
+Basically, draw() updates the screen only once at its end and not throughout.
+
+Therefore, everything that happens in the for loop is not happening on the screen but gets accumulated internally and then is put all at once on to the screen at the end of draw ().
+
+So when you want an animation get rid of the for loops and replace them by variables i1, i2, i3 and control them by your code like the for loops would act. E.g.:
+
+...
+i2++; 
+if (i2 > max2) { 
+    i1++; 
+    i2=0;
+}
+...
+Thus you use the fact that draw in itself loops automatically and gives you the animation.
+
+Warm regards, Chrisir
+
+Code example:
+
+
+
+int[][][] pixelConfigs = {
+
+  {{0, 0, 1, 1}, {0, 1, 0, 0}, {1, 0, 1, 1}}, 
+  {{0, 1, 1, 1}, {0, 0, 0, 0}, {1, 1, 1, 0}}, 
+  {{0, 1, 1, 1}, {0, 0, 0, 1}, {1, 0, 1, 0}}
+
+};
+
+int LCD_pixelSize = 28;
+int LCD_pixelGap = 2;
+int fillVal;
+
+int config = 0;
+
+void setup() {
+  size(1100, 400);
+  frameRate(2);
+}
+
+void draw() {
+  noStroke();
+  drawSingleCharacter();
+}
+
+void drawSingleCharacter() {
+
+  // for (int config = 0; config < pixelConfigs.length; config++) {
+  for (int row = 0; row < pixelConfigs[0].length; row++) {
+    for (int column = 0; column < pixelConfigs[0][row].length; column++) {
+
+      fillVal = pixelConfigs[config][row][column] * 255;
+      fill(fillVal);
+
+      int xPos =13+ (row * LCD_pixelSize) + (row * LCD_pixelGap);
+      int yPos =13+ (column * LCD_pixelSize) + (column * LCD_pixelGap);
+
+      rect(xPos, yPos, LCD_pixelSize, LCD_pixelSize);
+    }
+  }
+  //}
+  config++;
+  if (config>2) 
+    config = 0;
+}
