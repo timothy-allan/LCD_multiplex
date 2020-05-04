@@ -33,7 +33,7 @@ def generate_permutations(list_to_permute):
 
     print(len(permutation_list)) 
     
-    # convert each configuration to *char_width* rows for Processing (eg - 3 rows, 4 columns)
+    # convert each configuration to *char_width* rows for Processing (eg - 3 rows, 3 columns)
     
     num_of_rows = 3
 
