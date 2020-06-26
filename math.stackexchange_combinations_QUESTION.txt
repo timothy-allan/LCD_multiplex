@@ -1,0 +1,92 @@
+
+
+
+
+
+Counting the distinct configurations of 𝑛 pixels ON in a 𝑥×𝑦 grid.
+
+For example, how many ways can exactly 6 pixels be ON in a 5×8 grid?
+
+How would I go about calculating this?
+
+Where I'm at:
+
+I see that as @David.G.Stork points out, a 5×8 grid is equivalent to a 'list' of 40 'places'.
+
+So let's just look at 'lists' of 𝑙𝑒𝑛 length.
+
+Define some variables:
+
+List length = 𝑙𝑒𝑛
+
+Target number of pixels to be ON = 𝑛𝑢𝑚𝑃𝑖𝑥𝑒𝑙𝑠𝑂𝑛
+
+Number of distinct configurations = 𝑛𝑢𝑚𝐶𝑜𝑛𝑓𝑖𝑔𝑠
+
+Starting with 𝑙𝑒𝑛=4 and 𝑛𝑢𝑚𝑃𝑖𝑥𝑒𝑙𝑠𝑂𝑁=1
+
+The pixel can be ON in any one of 𝑙𝑒𝑛 (4) places...
+
+For this example, 𝑛𝑢𝑚𝐶𝑜𝑛𝑓𝑖𝑔𝑠=𝑙𝑒𝑛/𝑛𝑢𝑚𝑃𝑖𝑥𝑒𝑙𝑠𝑂𝑁
+
+Does this generalise? Obviously not. Doesn't work for ZERO pixels ON, nor for larger numbers of pixels ON.
+
+Try: 𝑙𝑒𝑛=4 and 𝑛𝑢𝑚𝑃𝑖𝑥𝑒𝑙𝑠𝑂𝑁=2
+
+The 'first' pixel (𝑝1) can be ON in one of 𝑙𝑒𝑛 (4) places. For each of those (4) places, the 'second' pixel (𝑝2) can be ON in only one of 3 or (𝑙𝑒𝑛−1) places:
+
+Places 𝑝1 can be in = 𝑙𝑒𝑛/𝑛𝑢𝑚𝑃𝑖𝑥𝑒𝑙𝑠𝑂𝑁
+
+Places 𝑝2 can be in = 𝑙𝑒𝑛×𝑙𝑒𝑛−1
+
+So...
+
+𝑛𝑢𝑚𝐶𝑜𝑛𝑓𝑖𝑔𝑠=(𝑙𝑒𝑛/1)+(𝑙𝑒𝑛×𝑙𝑒𝑛−1)
+
+For our example :
+
+𝑛𝑢𝑚𝐶𝑜𝑛𝑓𝑖𝑔𝑠=(4/2)+(4−1)=12
+
+However - some of our configurations are 'duplicates'.
+
+[𝑝1,0,0,𝑝2]=[𝑝2,0,0,𝑝1]
+
+[0,𝑝1,𝑝2,0]=[0,𝑝2,𝑝1,0]
+
+[𝑝1,𝑝2,0,0]=[𝑝2,𝑝1,0,0]
+
+[0,0,𝑝1,𝑝2]=[0,0,𝑝2,𝑝1]
+
+I can see there are 4 duplicates here...
+
+And this is where my intuition stops...
+
+Any insight would be welcome, and thanks @David.G.Stork for your input.
+
+Restatement of the entire question (as an example for the OP):
+
+How many different ways can I choose 𝑘 elements out of 𝑚?
+
+sequences-and-series
+share  cite  edit  undelete  flag 
+edited Apr 24 at 20:39
+asked Apr 23 at 22:04
+
+Tim Allan
+122 bronze badges
+3
+
+(406)
+– terrace Apr 23 at 22:07 
+1
+
+Even if you're not a mathematician, can you see that your question involves only the 40 pixels (places) and the fact that they are in a 5×8 grid is irrelevant? – David G. Stork Apr 23 at 22:17
+Agreed, and thanks for the edit @DavidG.Stork. – Tim Allan Apr 23 at 22:35   
+
+...and your title talks about an "n * n grid" but the body of your question asks about a non-square grid. Please take your time to ask questions carefully. It shows good faith and commitment, and will more likely garner help. – David G. Stork Apr 23 at 22:37
+@David G. Stork - I've edited my question, but now I fear it is too verbose, and I see the question has been closed. I understand this is a forum for mathematicians, and my question and my understanding of any answers might be better suited to another place - can you recommend any? – Tim Allan Apr 24 at 17:11   
+
+@terrace 's comment answers your question. – David G. Stork Apr 24 at 17:15
+@ terrace - thanks for your answer, I wasn't aware of combinations, thanks to @toni for the clue! – Tim Allan Apr 27 at 15:36   
+
+@ terrace - thanks for your answer, I wasn't aware of combinations, thanks to @toni for the clue! – Tim Allan Apr 27 at 15:36   
